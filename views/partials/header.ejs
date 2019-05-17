@@ -6,6 +6,7 @@
   <title>TrashCamp</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
 </head>
 
 <body>
@@ -17,25 +18,17 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
+          <a class="nav-link" href="/campgrounds">Home <span class="sr-only">(current)</span></a>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">login</button>
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">sign up</button>
-      </form>
+      <ul class="nav navbar-nav">
+        <%  if(!currentUser){ %>
+        <li><a href="/login" class="nav-link  my-2 my-sm-0 mx-1">Login</a></li>
+        <li><a href="/register"class="nav-link my-2 my-sm-0 mx-1">Sign Up</a></li>
+          <% }else{%>
+        <li><a href="#" class="nav-link my-sm-0 mx-1 active" ><%= currentUser.username %></a></li>
+        <li><a href="/logout"class="nav-link my-2 my-sm-0 mx-1">Logout</a></li>
+      <% } %>
+        </ul>
     </div>
   </nav>
