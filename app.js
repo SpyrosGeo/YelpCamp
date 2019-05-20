@@ -10,7 +10,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var commentRoutes = require('./routes/comments');
 var campgroundRoutes = require('./routes/campgrounds');
-var indexRoutes =require('./routes/index');
+var indexRoutes = require('./routes/index');
 mongoose.connect("mongodb://localhost/trashcamp", {
   useNewUrlParser: true
 });
