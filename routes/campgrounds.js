@@ -24,10 +24,15 @@ router.post("/",isLoggedIn, function(req, res) {
   var name = req.body.name;
   var image = req.body.image;
   var desc = req.body.description;
+  var author = {
+    id:req.user._id,
+    username:req.user.username
+  }
   var newCampground = {
     name: name,
     image: image,
-    description: desc
+    description: desc,
+    author:author
   };
   //create a new campground and save to database
   Campground.create(newCampground,function(err,newlyCreated) {
@@ -35,6 +40,7 @@ router.post("/",isLoggedIn, function(req, res) {
         console.log('err', err);
       } else {
           //redirect
+          console.log('newlyCreated', newlyCreated);
         res.redirect("/campgrounds");
       }
   });
