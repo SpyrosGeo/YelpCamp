@@ -19,7 +19,8 @@ app.use(bodyParser.urlencoded({
 }));
 app.set("view engine", "ejs");
 app.use(express.static("public"));
-seedDB();
+
+// seedDB();//seed the database
 //PASSPORT CONFIG
 app.use(require("express-session")({
   secret:"kiba",

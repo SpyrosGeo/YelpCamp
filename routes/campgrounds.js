@@ -15,12 +15,12 @@ router.get("/", function(req, res) {
   });
 });
 //NEW-show form
-router.get("/new", function(req, res) {
+router.get("/new", isLoggedIn,function(req, res) {
   res.render("campgrounds/new");
 });
 
 //CREATE -add new campground to DB
-router.post("/", function(req, res) {
+router.post("/",isLoggedIn, function(req, res) {
   var name = req.body.name;
   var image = req.body.image;
   var desc = req.body.description;
@@ -52,5 +52,13 @@ router.post("/", function(req, res) {
       });
     });
 
-  
+//Middleware
+    function isLoggedIn(req, res, next){
+      if (req.isAuthenticated()) {
+        return next();
+      } else {
+        res.redirect("/login");
+      }
+    }
+
 module.exports = router;
