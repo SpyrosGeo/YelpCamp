@@ -19,15 +19,16 @@
       <hr>
       <p class="card-text"><%= campground.description %></p>
       <p class="card-text"> <small><em>Submitted by <%= campground.author.username %></em></small></p>
-
-      <!-- <a href="/campgrounds"class="btn btn-outline-success inline">Go Back</a> -->
+      <a class="card-text btn btn-outline-info" href="/campgrounds/<%=campground._id%>/edit">Edit</a>
+      <form id="delete-form" action="/campgrounds/<%= campground._id%>?_method=DELETE" method="post">
+          <button class="btn btn-outline-danger ">Delete </button>
+      </form>
     </div>
-
   </div>
   <div class="card text-white bg-dark">
     <div class="card-body">
         <div class="text-right">
-          <a href="/campgrounds/<%= campground._id %>/comments/new"class="btn btn-outline-success inline">Leave a Review </a>
+          <a href="/campgrounds/<%= campground._id %>/comments/new"class="btn btn-sm btn-outline-success inline">Leave a Review </a>
         </div>
         <hr>
         <div class="row">
@@ -38,7 +39,6 @@
                   <span class="float-right text-white ">10 days ago</span>
                   <div class="float-left">
                     <p class="card-title"><strong><%= comment.author.username %></strong></p>
-
                     <p class="card-text"><%=comment.text %></p>
                   </div>
                 </div>

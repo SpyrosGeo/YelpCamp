@@ -11,6 +11,7 @@ var LocalStrategy = require('passport-local');
 var commentRoutes = require('./routes/comments');
 var campgroundRoutes = require('./routes/campgrounds');
 var indexRoutes = require('./routes/index');
+var methodOverride = require('method-override');
 mongoose.connect("mongodb://localhost/trashcamp", {
   useNewUrlParser: true
 });
@@ -19,7 +20,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.set("view engine", "ejs");
 app.use(express.static("public"));
-
+app.use(methodOverride("_method"));
 // seedDB();//seed the database
 //PASSPORT CONFIG
 app.use(require("express-session")({
@@ -41,7 +42,6 @@ app.use(function(req,res,next){
 app.use(indexRoutes);
 app.use("/campgrounds",campgroundRoutes);
 app.use("/campgrounds/:id/comments",commentRoutes);
-
 app.listen(8082, function() {
   console.log("server is up");
 });
