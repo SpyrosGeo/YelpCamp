@@ -1,5 +1,6 @@
 var express = require("express");
 var mongoose = require("mongoose");
+var flash = require('connect-flash');
 var Campground = require('./models/campground');
 var Comment = require("./models/comment");
 var User = require('./models/user');
@@ -21,13 +22,14 @@ app.use(bodyParser.urlencoded({
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(methodOverride("_method"));
+app.use(flash());
 // seedDB();//seed the database
-//PASSPORT CONFIG
 app.use(require("express-session")({
   secret:"kiba",
   resave:false,
   saveUninitialized:false
 }));
+//PASSPORT configuration
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
@@ -36,6 +38,8 @@ passport.deserializeUser(User.deserializeUser());
 //passes the current user in every route
 app.use(function(req,res,next){
   res.locals.currentUser = req.user;
+  res.locals.error = req.flash("error");
+  res.locals.success = req.flash("success");
   next();
 });
 
