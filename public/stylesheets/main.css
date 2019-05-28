@@ -1,6 +1,6 @@
 /* body {
   background: purple;
 } */
-#delete-form {
+.delete-form {
   display:inline;
 }
