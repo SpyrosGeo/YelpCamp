@@ -13,8 +13,9 @@ var commentRoutes = require('./routes/comments');
 var campgroundRoutes = require('./routes/campgrounds');
 var indexRoutes = require('./routes/index');
 var methodOverride = require('method-override');
-mongoose.connect("mongodb://localhost/trashcamp", {
-  useNewUrlParser: true
+mongoose.connect("mongodb://mongo:27017/trashcamp", {
+  useNewUrlParser: true,
+  useUnifiedTopology:true
 });
 app.use(bodyParser.urlencoded({
   extended: true
@@ -46,6 +47,6 @@ app.use(function(req,res,next){
 app.use(indexRoutes);
 app.use("/campgrounds",campgroundRoutes);
 app.use("/campgrounds/:id/comments",commentRoutes);
-app.listen(8082, function() {
+app.listen(8086, function() {
   console.log("server is up");
 });
